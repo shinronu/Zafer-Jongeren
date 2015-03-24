@@ -1,11 +1,21 @@
 package com.erdierdal.zaferjongeren.screens;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
 import com.erdierdal.zaferjongeren.R;
 import com.erdierdal.zaferjongeren.userfunctions.AnimationHandler;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * Created by Shinronu on 3/16/2015.
@@ -23,11 +33,17 @@ public class Activiteiten extends ActionBarActivity {
     public float YDelta2 = 25;
     public int animation_state = 0;
 
+    public String SYer;
+    public String SSaat;
+    public String SKonu;
+    protected String URL = "https://github.com/shinronu/sohbetler/blob/master/persembe_sohbeti.txt";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.zaferjongeren_activities);
         prepare();
+        (new Data_handler()).execute();
     }
 // prepare the texviews so we can use it in a global state within this class
     public void prepare(){
@@ -40,6 +56,7 @@ public class Activiteiten extends ActionBarActivity {
 // add an onclicklistener which will start the animations depending on state of the content
     public OnClickListener animationStart = new OnClickListener(){
         public void onClick(View v){
+            thuesday_content.setText(SYer + "\r\n" +  SSaat +  "\r\n"+ SKonu);
             if (animation_state == 0){
                 thuesday_content.startAnimation(animator.animate(thuesday_content, animation_duration, alpha1, alpha2, XDelta, XDelta, YDelta1, YDelta2));
                 animation_state++;
@@ -49,5 +66,24 @@ public class Activiteiten extends ActionBarActivity {
             }
         }
     };
-//    TODO add the data parser logics from github jsoup parsing
+private class Data_handler extends AsyncTask {
+    @Override
+    protected Object doInBackground(Object... params) {
+        try {
+            Document doc = Jsoup.connect(URL).get();
+            Elements Plaats = doc.select("td#LC1");
+            Elements Tijd = doc.select("td#LC2");
+            Elements Onderwerp = doc.select("td#LC3");
+            SYer = Plaats.text();
+            SSaat = Tijd.text();
+            SKonu = Onderwerp.text();
+        }
+        catch(MalformedURLException e){
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
 }
