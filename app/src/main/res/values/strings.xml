@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Zafer Jongeren</string>
+    <string name="action_settings">Settings</string>
+
+    <!--old strings have yet to integrate these-->
+    <string name="app_logo">Zafer Genclik logo</string>
+    <string name="app_title">Zafer Genclik Teskilati</string>
+    <string name="facebook_logo">Facebook logo</string>
+    <string name="facebook_text">Facebook.com/zafergenclik</string>
+    <string name="youtube_text">Youtube.com/Zafergenclik</string>
+    <string name="youtube_logo">Youtube logo</string>
+    <string name="instellingen">instellingen</string>
+
+
+<!--mainMenu xml-->
+    <string name="title_activity_activiteiten">Activiteiten</string>
+    <string name="title_activity_main_menu">Zafer Jongeren</string>
+    <string name="hello_world">Hello fucking world!</string>
+
+<!--activities xml-->
+    <string name="thuesday_title">Donderdagse Lezing</string>
+    <string name="thuesday_content">Yer:x  Saat:y Konu:z</string>
+    <string name="service_name">Zafer Genclik Service</string>
+
+</resources>
