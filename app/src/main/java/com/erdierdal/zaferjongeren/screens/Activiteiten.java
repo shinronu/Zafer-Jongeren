@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.erdierdal.zaferjongeren.R;
@@ -24,6 +25,7 @@ public class Activiteiten extends ActionBarActivity {
     public TextView thuesday_content;
     public TextView thuesday_title;
     public AnimationHandler animator;
+    public Button notify;
 
     final int animation_duration = 400;
     public float alpha1 = 0;
