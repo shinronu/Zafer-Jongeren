@@ -24,4 +24,7 @@
     <string name="thuesday_content">Yer:x  Saat:y Konu:z</string>
     <string name="service_name">Zafer Genclik Service</string>
 
+
+<!--notificationhandler xml-->
+    <string name="title_activity_notification_handler">Notification Handler</string>
 </resources>

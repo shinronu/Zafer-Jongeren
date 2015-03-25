@@ -1,5 +1,6 @@
 package com.erdierdal.zaferjongeren.screens;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.erdierdal.zaferjongeren.R;
 import com.erdierdal.zaferjongeren.userfunctions.AnimationHandler;
+import com.erdierdal.zaferjongeren.userfunctions.NotificationHandler;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -54,6 +56,16 @@ public class Activiteiten extends ActionBarActivity {
         thuesday_content.setVisibility(View.GONE);
         thuesday_title.setOnClickListener(animationStart);
         animator = new AnimationHandler();
+        notify = (Button) findViewById(R.id.notify);
+        notify.setClickable(true);
+        notify.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchtoNotificationScreen = new Intent(Activiteiten.this, NotificationHandler.class);
+                Activiteiten.this.startActivity(switchtoNotificationScreen);
+                Activiteiten.this.finish();
+            }
+        });
     }
 // add an onclicklistener which will start the animations depending on state of the content
     public OnClickListener animationStart = new OnClickListener(){
