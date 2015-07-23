@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.erdierdal.zaferjongeren.R;
 import com.erdierdal.zaferjongeren.userfunctions.AnimationHandler;
-import com.erdierdal.zaferjongeren.userfunctions.NotificationHandler;
+import com.erdierdal.zaferjongeren.userfunctions.ServiceHandler;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,15 +32,17 @@ public class Activiteiten extends ActionBarActivity {
     final int animation_duration = 400;
     public float alpha1 = 0;
     public float alpha2 = 1;
-    public float XDelta = 150;
-    public float YDelta1 = -100;
-    public float YDelta2 = 25;
+    public float XDelta = 100;
+    public float YDelta1 = -170;
+    public float YDelta2 = -105;
     public int animation_state = 0;
 
     public String SYer;
     public String SSaat;
     public String SKonu;
     protected String URL = "https://github.com/shinronu/sohbetler/blob/master/persembe_sohbeti.txt";
+
+//    private static final String TAG2 = "MyActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,13 @@ public class Activiteiten extends ActionBarActivity {
         notify.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchtoNotificationScreen = new Intent(Activiteiten.this, NotificationHandler.class);
-                Activiteiten.this.startActivity(switchtoNotificationScreen);
-                Activiteiten.this.finish();
+//                Intent switchtoNotificationScreen = new Intent(Activiteiten.this, NotificationHandler.class);
+//                Activiteiten.this.startActivity(switchtoNotificationScreen);
+//                Activiteiten.this.finish();
+
+                // A little service test.(temporary code).
+                Intent intent = new Intent(Activiteiten.this, ServiceHandler.class);
+                Activiteiten.this.startService(intent);
             }
         });
     }
@@ -71,6 +77,7 @@ public class Activiteiten extends ActionBarActivity {
     public OnClickListener animationStart = new OnClickListener(){
         public void onClick(View v){
             thuesday_content.setText(SYer + "\r\n" +  SSaat +  "\r\n"+ SKonu);
+            // Check if there is an ongoing animation, if not start the animation.
             if (animation_state == 0){
                 thuesday_content.startAnimation(animator.animate(thuesday_content, animation_duration, alpha1, alpha2, XDelta, XDelta, YDelta1, YDelta2));
                 animation_state++;

@@ -18,7 +18,6 @@ import com.erdierdal.zaferjongeren.R;
 */
 public class NotificationHandler extends Activity {
 //   TODO class veranderen naar een notification handler die werkt op de activity scherm en als erop wordt geklikt dat die scherm wordt geopend.
-//
 
     public Button notify;
     NotificationManager NM;
